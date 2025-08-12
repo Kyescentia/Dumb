@@ -1,0 +1,2 @@
+# Dumb
+dumb study notes
