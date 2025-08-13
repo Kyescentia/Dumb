@@ -83,8 +83,130 @@ This guide covers the core concepts from your notes. Focus on understanding thes
         ```
 
 *   **`match / case` Statements (match / case 语句)**
-    *   **English:** A cleaner way to check one variable against many possible specific values. It's like a "switch" statement.
-    *   **中文:** 一种更清晰的方式，用于检查单个变量是否等于多个可能的值。类似于其他语言中的 "switch" 语句。
+   ### **When to Use `match/case`**
+
+   *   **BEST for:** Checking a single variable against multiple **specific, exact values**.
+   *   **NOT for:** Checking ranges (e.g., `score > 90`). For ranges, a standard `if/elif/else` is still the best tool.
+
+   ### **何时使用 `match/case`**
+
+   *   **最适合用于：** 将 **单个变量** 与多个 **特定的、精确的值** 进行比较。
+   *   **不适合用于：** 检查范围 (例如 `score > 90`)。对于范围检查，标准的 `if/elif/else` 仍然是最好的工具。
+   
+   *   **English:** A cleaner way to check one variable against many possible specific values. It's like a "switch" statement.
+         **The `if/elif/else` Way:**
+         ```python
+            choice = "2"
+            
+            if choice == "1":
+                print("Viewing Profile.")
+            elif choice == "2":
+                print("Editing Settings.")
+            elif choice == "3":
+                print("Logging Out`.")
+            else:
+                print("Invalid choice!")
+            # Output: Editing Settings.
+         ```
+         
+         **The `match/case` Way (Cleaner):**
+         ```python
+         choice = "2"
+         
+         match choice:
+             case "1":
+                 print("Viewing Profile.")
+             case "2":
+                 print("Editing Settings.")
+             case "3":
+                 print("Logging Out.")
+             case _:  # The underscore `_` is a wildcard, acting like 'else'
+                 print("Invalid choice!")
+         # Output: Editing Settings.
+         ```
+   *   **中文:** 一种更清晰的方式，用于检查单个变量是否等于多个可能的值。类似于其他语言中的 "switch" 语句。
+       **使用 `if/elif/else` 的方法:**
+       ```python
+         choice = "2"
+         
+         if choice == "1":
+             print("查看个人资料 (Viewing Profile)。")
+         elif choice == "2":
+             print("编辑设置 (Editing Settings)。")
+         elif choice == "3":
+             print("登出 (Logging Out)。")
+         else:
+             print("无效选择 (Invalid choice)!")
+         # 输出: 编辑设置 (Editing Settings)。
+       ```
+   
+       **使用 `match/case` 的方法 (更简洁):**
+       ```python
+         choice = "2"
+         
+         match choice:
+             case "1":
+                 print("查看个人资料 (Viewing Profile)。")
+             case "2":
+                 print("编辑设置 (Editing Settings)。")
+             case "3":
+                 print("登出 (Logging Out)。")
+             case _:  # 这个下划线 `_` 是一个通配符 (wildcard)，作用类似于 'else'
+                 print("无效选择 (Invalid choice)!")
+         # 输出: 编辑设置 (Editing Settings)。
+       ```
+   
+   #### **Advanced Features: Combining Cases with `|`**
+   
+   A powerful feature is using the `|` (OR) symbol to combine multiple cases that should do the same thing. This is taken from the grading example in your notes.
+   
+   **The `if/elif/else` Way:**
+   ```python
+   grade = 'B'
+   
+   if grade == 'A' or grade == 'F':
+       print("You got an", grade, "for the test!")
+   elif grade == 'B' or grade == 'C' or grade == 'D':
+       print("You got a", grade, "for the test!")
+   ```
+   
+   **The `match/case` Way:**
+   ```python
+   grade = 'B'
+   
+   match grade:
+       case 'A' | 'F':  # Matches if grade is 'A' OR 'F'
+           print("You got an", grade, "for the test!")
+           
+       case 'B' | 'C' | 'D': # Matches if grade is 'B' OR 'C' OR 'D'
+           print("You got a", grade, "for the test!")
+   ```
+
+   #### **高级功能：使用 `|` 合并条件**
+
+   一个强大的功能是使用 `|` (或) 符号来合并多个应该执行相同操作的 `case`。这个例子来自你笔记中的成绩评定。
+   
+   **使用 `if/elif/else` 的方法:**
+   ```python
+   grade = 'B'
+   
+   if grade == 'A' or grade == 'F':
+       print("你在这次考试中得到了一个 (an)", grade)
+   elif grade == 'B' or grade == 'C' or grade == 'D':
+       print("你在这次考试中得到了一个 (a)", grade)
+   ```
+   
+   **使用 `match/case` 的方法:**
+   ```python
+   grade = 'B'
+   
+   match grade:
+       case 'A' | 'F':  # 如果 grade 是 'A' 或 (OR) 'F'，则匹配
+           print("你在这次考试中得到了一个 (an)", grade)
+           
+       case 'B' | 'C' | 'D': # 如果 grade 是 'B' 或 'C' 或 'D'，则匹配
+           print("你在这次考试中得到了一个 (a)", grade)
+   ```
 
 ---
 
