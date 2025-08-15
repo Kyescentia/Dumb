@@ -100,15 +100,19 @@
     *   **First-Come, First-Served (FCFS) / 先到先得**
         *   **EN:** A non-preemptive algorithm where processes are executed in the order they arrive.
         *   **中文:** 一种非抢占式算法，进程按其到达的顺序执行。
+        *   🔗 [Example of FCFS](https://github.com/Kyescentia/Dumb/blob/main/Y2S1/os/schedulingalgorithms.md#1-fcfs-first-come-first-served--%E5%85%88%E5%88%B0%E5%85%88%E5%BE%97)
     *   **Shortest Job Next (SJN) / 最短作业优先**
         *   **EN:** A non-preemptive algorithm that selects the waiting process with the smallest estimated execution time.
         *   **中文:** 一种非抢占式算法，选择等待队列中预计执行时间最短的进程。
+        *   🔗 [Example of SJN](https://github.com/Kyescentia/Dumb/blob/main/Y2S1/os/schedulingalgorithms.md#2-sjn-shortest-job-next--%E6%9C%80%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88)
     *   **Shortest Remaining Time (SRT) / 最短剩余时间**
         *   **EN:** The preemptive version of SJN. It switches to a new process if it has a shorter remaining time than the current one.
         *   **中文:** SJN的抢占式版本。如果新到达的进程比当前进程的剩余时间更短，则切换到新进程。
+        *   🔗 [Example of SRT](https://github.com/Kyescentia/Dumb/blob/main/Y2S1/os/schedulingalgorithms.md#3-srt-shortest-remaining-time--%E6%9C%80%E7%9F%AD%E5%89%A9%E4%BD%99%E6%97%B6%E9%97%B4)
     *   **Round Robin (RR) / 轮询调度**
         *   **EN:** A preemptive algorithm where each process gets a small unit of CPU time (time quantum).
         *   **中文:** 一种抢占式算法，每个进程被分配一个小的CPU时间单位 (时间片)。
+        *   🔗 [Example of RR](https://github.com/Kyescentia/Dumb/blob/main/Y2S1/os/schedulingalgorithms.md#4-rr-round-robin--%E8%BD%AE%E8%AF%A2%E8%B0%83%E5%BA%A6)
 
 ### **3. Important Formulas / 重要计算公式**
 
