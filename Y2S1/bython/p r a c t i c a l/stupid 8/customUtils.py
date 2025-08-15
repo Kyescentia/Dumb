@@ -10,6 +10,17 @@ def readstr(prompt):
 def count_words(input_string):
     return len(input_string.split())
 
+def read_integer(prompt="Enter an integer: ", error="Error: Wrong input!\n",
+minimum=-(10**10), maximum=10**10):
+    try:
+        value = int(input(prompt))
+        if value < minimum or value > maximum:
+            return ("Out of range!")
+        return value
+    except ValueError:
+        return error
+
+
 """
 QUESTION 1 UTILS
 """
