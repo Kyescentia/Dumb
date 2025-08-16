@@ -113,6 +113,14 @@
         *   **EN:** A preemptive algorithm where each process gets a small unit of CPU time (time quantum).
         *   **中文:** 一种抢占式算法，每个进程被分配一个小的CPU时间单位 (时间片)。
         *   🔗 [Example of RR](https://github.com/Kyescentia/Dumb/blob/main/Y2S1/os/schedulingalgorithms.md#4-rr-round-robin--%E8%BD%AE%E8%AF%A2%E8%B0%83%E5%BA%A6)
+   *   **Non Preemptive Priority [NPP]**
+        *   **EN:** Once a process starts running, it will not be interrupted. It runs to completion. The scheduler only makes a decision when the CPU is free.
+        *   **中文:** 一旦一个进程开始运行，它就不会被中断，会一直运行直到完成。调度器只在CPU空闲时才做决策。
+        *   🔗 [Example of NPP](https://github.com/Kyescentia/Dumb/blob/main/Y2S1/os/PPnNPP.md#1-non-preemptive-priority--%E9%9D%9E%E6%8A%A2%E5%8D%A0%E5%BC%8F%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6)
+   * **Preemptive Priority [PP]**
+        *   **EN:** A running process can be interrupted (preempted) if a new process with a higher priority arrives.
+        *   **中文:** 如果一个具有更高优先级的新进程到达，正在运行的进程可能会被中断 (抢占)。
+        *   🔗 [Example of PP](https://github.com/Kyescentia/Dumb/blob/main/Y2S1/os/PPnNPP.md#2-preemptive-priority--%E6%8A%A2%E5%8D%A0%E5%BC%8F%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6)
 
 ### **3. Important Formulas / 重要计算公式**
 
