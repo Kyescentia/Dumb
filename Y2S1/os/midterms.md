@@ -168,3 +168,60 @@
 *   **Starvation / 饥饿**
     *   **EN:** A process is indefinitely postponed because it is repeatedly denied access to resources (e.g., a low-priority process).
     *   **中文:** 一个进程被无限期地延迟，因为它反复被拒绝访问资源 (例如，一个低优先级的进程)。
+   
+   ### **Deadlock Example / 死锁示例**
+   
+   *   **EN:** A situation where two or more processes are blocked forever, waiting for each other. This happens when all four necessary conditions (Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait) are met.
+   *   **中文:** 两个或多个进程因相互等待而永久阻塞的情况。当四个必要条件 (互斥、占有并等待、不可抢占、循环等待) 同时满足时会发生。
+   
+   #### **The Scenario / 场景**
+   
+   *   **Processes / 进程:**
+       *   **Process 1 (P1):** Needs to use the Scanner first, then the Printer.
+       *   **Process 2 (P2):** Needs to use the Printer first, then the Scanner.
+   *   **Resources / 资源:**
+       *   **Resource 1 (R1):** A Scanner (扫描仪)
+       *   **Resource 2 (R2):** A Printer (打印机)
+   
+   Both resources have **Mutual Exclusion** (only one process can use them at a time).
+   两种资源都是**互斥**的 (一次只能由一个进程使用)。
+   
+   #### **Sequence of Events Leading to Deadlock / 导致死锁的事件顺序**
+   
+   1.  **Step 1:** Process 1 requests and gets the Scanner (R1).
+       **第一步:** 进程1 请求并获得了扫描仪 (R1)。
+       *   *State:* P1 holds R1. (P1 占有 R1).
+   2.  **Step 2:** Process 2 requests and gets the Printer (R2).
+       **第二步:** 进程2 请求并获得了打印机 (R2)。
+       *   *State:* P1 holds R1; P2 holds R2. (P1 占有 R1; P2 占有 R2).
+   3.  **Step 3:** Process 1 tries to request the Printer (R2), but it's held by P2. So, **P1 waits**.
+       **第三步:** 进程1 试图请求打印机 (R2)，但它被 P2 占有。因此，**P1 开始等待**。
+       *   *State:* P1 holds R1 and is waiting for R2. (P1 占有 R1 并等待 R2).
+   4.  **Step 4:** Process 2 tries to request the Scanner (R1), but it's held by P1. So, **P2 waits**.
+       **第四步:** 进程2 试图请求扫描仪 (R1)，但它被 P1 占有。因此，**P2 开始等待**。
+       *   *State:* P2 holds R2 and is waiting for R1. (P2 占有 R2 并等待 R1).
+   
+   #### **Result: DEADLOCK!**
+   **结果：死锁！**
+   
+   *   **EN:** P1 is waiting for P2 to release the Printer. P2 is waiting for P1 to release the Scanner. Neither can proceed. This is a **Circular Wait**.
+   *   **中文:** P1 在等待 P2 释放打印机。P2 在等待 P1 释放扫描仪。两者都无法继续执行。这是一个**循环等待**。
+   
+   #### **Resource Allocation Graph Visualization / 资源分配图可视化**
+   This graph shows the deadlock state clearly:
+   这个图清晰地展示了死锁状态：
+   
+   ```
+          waits for / 等待
+      P1 ----------> [ R2 ]
+      ^              |
+      |              |
+    holds / 占有     holds / 占有
+      |              |
+      |              v
+    [ R1 ] <---------- P2
+          waits for / 等待
+   ```
+   
+   *   **EN:** The cycle in the graph (P1 → R2 → P2 → R1 → P1) confirms the deadlock.
+   *   **中文:** 图中的循环 (P1 → R2 → P2 → R1 → P1) 证实了死锁的存在。
