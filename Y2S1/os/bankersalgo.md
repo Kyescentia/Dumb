@@ -2,8 +2,6 @@
 
 ---
 
-### **Solving Question 2(b) using Your Friend's Table Format / 使用你朋友的表格格式解答问题 2(b)**
-
 #### **Step 1: Fill in the initial data from the question / 步骤1：从题目中填入初始数据**
 
 *   **EN:** First, we copy the `Allocated` and `Max` values from the exam question into the table. Then, we calculate the `Need` matrix (`Need = Max - Allocated`).
