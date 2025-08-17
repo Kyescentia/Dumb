@@ -133,103 +133,231 @@
 
 ---
 
-## **Chapter 3: Deadlock / 死锁**
+### **Chapter 3: Deadlock / 第三章：死锁**
 
-### **1. What is Deadlock? / 什么是死锁?**
+#### **1. What is Deadlock? / 什么是死锁？**
+
+*   **Definition / 定义**
+    *   **EN:** A situation where a set of two or more processes are permanently blocked because each process is holding a resource and waiting for another resource that is held by another process in the same set. It is also called a "deadly embrace."
+    *   **中文:** 一种状态，其中两个或多个进程被永久阻塞，因为每个进程都持有一个资源，同时又在等待该集合中另一个进程所持有的另一个资源。它也被称为“死锁拥抱”。
+*   **Key Characteristics / 关键特征**
+    *   **EN:** Deadlock is more serious than starvation because it affects multiple processes and will never resolve on its own. It requires external intervention (e.g., terminating a process) to be broken.
+    *   **中文:** 死锁比饥饿更严重，因为它影响多个进程，并且永远无法自行解决。它需要外部干预（例如，终止一个进程）才能被打破。
+
+---
+
+#### **2. The Four Necessary Conditions for Deadlock / 死锁的四个必要条件**
+
+*   **EN:** For a deadlock to occur, all four of these conditions must be met simultaneously.
+*   **中文:** 死锁的发生必须**同时满足**以下所有四个条件。
+
+1.  **Mutual Exclusion / 互斥条件**
+    *   **EN:** At least one resource must be non-sharable, meaning only one process can use it at a time.
+    *   **中文:** 至少有一个资源必须是非共享的，意味着一次只有一个进程可以使用它。（例如：打印机）。
+2.  **Hold and Wait / 占有并等待**
+    *   **EN:** A process is holding at least one resource while waiting to acquire additional resources that are currently being held by other processes.
+    *   **中文:** 一个进程至少持有一个资源，同时又在等待获取当前被其他进程持有的额外资源。
+3.  **No Preemption / 不可抢占**
+    *   **EN:** A resource cannot be forcibly taken away from the process holding it. It can only be released voluntarily by the process.
+    *   **中文:** 资源不能被强制性地从持有它的进程中夺走。它只能由该进程自愿释放。
+4.  **Circular Wait / 循环等待**
+    *   **EN:** A set of waiting processes {P0, P1, ..., Pn} exists such that P0 is waiting for a resource held by P1, P1 is waiting for a resource held by P2, ..., and Pn is waiting for a resource held by P0.
+    *   **中文:** 存在一个等待进程的循环链 {P0, P1, ..., Pn}，其中P0在等待P1持有的资源，P1在等待P2持有的资源，...，而Pn在等待P0持有的资源。
+
+---
+
+#### **3. Modeling Deadlocks: Resource-Allocation Graphs / 死锁建模：资源分配图**
+
+*   **EN:** We can visualize the state of the system using a directed graph.
+*   **中文:** 我们可以使用有向图来可视化系统的状态。
+    *   **Process (进程):** Represented by a circle / 用圆形表示。
+    *   **Resource (资源):** Represented by a square / 用方形表示。
+    *   **Request Edge (请求边):** An arrow from a process to a resource (`P → R`) means the process is requesting that resource. / 从进程指向资源的箭头 (`P → R`) 表示该进程正在请求该资源。
+    *   **Assignment Edge (分配边):** An arrow from a resource to a process (`R → P`) means the resource has been allocated to that process. / 从资源指向进程的箭头 (`R → P`) 表示该资源已被分配给该进程。
+
+*   **Key Rule / 关键规则**
+    *   **EN:** If the graph contains a **cycle**, a deadlock exists. If there is no cycle, the system is not deadlocked.
+    *   **中文:** 如果图中包含一个**环路（cycle）**，则存在死锁。如果没有环路，系统就没有死锁。
+
+*   **Example / 示例:**
+    *   **EN:** P1 holds R1 and wants R2. P2 holds R2 and wants R1.
+    *   **中文:** P1持有R1并想要R2。P2持有R2并想要R1。
+
+    **Text-based Visualization / 文本可视化:**
+    ```
+           waits for / 等待
+       P1 ----------> [ R2 ]
+       ^              |
+       |              |
+     holds / 占有     holds / 占有
+       |              |
+       |              v
+     [ R1 ] <---------- P2
+           waits for / 等待
+    ```
+    *   **EN:** The cycle `P1 → R2 → P2 → R1 → P1` clearly indicates a deadlock.
+    *   **中文:** 环路 `P1 → R2 → P2 → R1 → P1` 清晰地表明了死锁的存在。
+
+---
+
+#### **4. Strategies for Handling Deadlocks / 处理死锁的策略**
+
+##### **a) Deadlock Prevention / 死锁预防**
+
+*   **EN:** Design the system to break one of the four necessary conditions, making deadlock impossible.
+*   **中文:** 通过破坏四个必要条件之一来设计系统，使死锁不可能发生。
+    1.  **Break Mutual Exclusion:** Make resources sharable (not always possible, e.g., for a printer). / 打破互斥：使资源可共享（但并非所有资源都可行，如打印机）。
+    2.  **Break Hold and Wait:** Require a process to request all its resources at once, or to release all held resources before requesting new ones. / 打破占有并等待：要求进程一次性请求所有资源，或在请求新资源前释放所有已持有的资源。
+    3.  **Break No Preemption:** If a process requests a resource that is unavailable, it must release all resources it currently holds. / 打破不可抢占：如果一个进程请求的资源不可用，它必须释放当前持有的所有资源。
+    4.  **Break Circular Wait:** Impose a total ordering of all resource types and require that each process requests resources in an increasing order of enumeration (Havender's solution). / 打破循环等待：对所有资源类型进行全局排序，并要求每个进程按递增的顺序请求资源（Havender解决方案）。
+
+##### **b) Deadlock Avoidance / 死锁避免**
+
+*   **EN:** The OS uses prior information about the maximum resources a process might need to decide whether granting a request is "safe." The goal is to never enter an unsafe state.
+*   **中文:** 操作系统使用关于进程可能需要的最大资源的先验信息，来决定批准一个请求是否“安全”。目标是永远不进入不安全状态。
+    *   **Main Tool / 主要工具:** **Banker's Algorithm**. / **银行家算法**。
+    *   **EN:** It checks if granting a request will leave the system in a **safe state** (a state where there is at least one sequence for all processes to finish). If not, the request is denied.
+    *   **中文:** 它检查批准一个请求后系统是否会处于**安全状态**（即存在至少一个能让所有进程都完成的序列）。如果不是，则请求被拒绝。
+
+##### **c) Deadlock Detection and Recovery / 死锁检测与恢复**
+
+*   **EN:** Allow the system to enter a deadlock, then detect it and recover.
+*   **中文:** 允许系统进入死锁状态，然后检测到它并进行恢复。
+    *   **Detection / 检测:** Periodically check for cycles in the resource-allocation graph. / 定期检查资源分配图中是否存在环路。
+    *   **Recovery / 恢复:**
+        1.  **Process Termination / 终止进程:** Abort one or more processes in the deadlock cycle. / 中止死锁环路中的一个或多个进程。
+        2.  **Resource Preemption / 资源抢占:** Forcibly take away resources from some processes and give them to others until the deadlock cycle is broken. / 从某些进程中强制性地收回资源，并将其分配给其他进程，直到死锁环路被打破。
+
+---
+
+#### **5. Deadlock vs. Starvation / 死锁 vs. 饥饿**
 
 *   **Deadlock / 死锁**
-    *   **EN:** A situation where two or more processes are blocked forever, each waiting for a resource held by another process in the set.
-    *   **中文:** 指两个或多个进程因互相等待对方持有的资源而陷入永久阻塞的一种状态。
-
-### **2. The Four Necessary Conditions for Deadlock / 死锁的四个必要条件**
-
-*   **Mutual Exclusion / 互斥条件**
-    *   **EN:** At least one resource must be held in a non-sharable mode; only one process can use it at a time.
-    *   **中文:** 至少有一个资源必须处于非共享模式；一次只有一个进程可以使用它。
-*   **Hold and Wait / 占有并等待**
-    *   **EN:** A process must be holding at least one resource and waiting to acquire additional resources held by other processes.
-    *   **中文:** 一个进程必须至少持有一个资源，并且正在等待获取由其他进程持有的额外资源。
-*   **No Preemption / 不可抢占**
-    *   **EN:** Resources cannot be forcibly taken from a process. They must be explicitly released by the process holding them.
-    *   **中文:** 资源不能被强制性地从一个进程中夺走，必须由持有它的进程显式释放。
-*   **Circular Wait / 循环等待**
-    *   **EN:** A set of waiting processes {P0, P1, ..., Pn} must exist such that P0 is waiting for a resource held by P1, P1 is waiting for P2, ..., and Pn is waiting for P0.
-    *   **中文:** 必须存在一个等待进程集合 {P0, P1, ..., Pn}，其中P0在等待P1持有的资源，P1在等待P2的资源，...，而Pn在等待P0的资源。
-
-### **3. Strategies for Handling Deadlocks / 处理死锁的策略**
-
-*   **Deadlock Prevention / 死锁预防**
-    *   **EN:** Ensure that the system can never enter a deadlock state by breaking one of the four necessary conditions.
-    *   **中文:** 通过破坏四个必要条件之一，确保系统永远不会进入死锁状态。
-*   **Deadlock Avoidance / 死锁避免**
-    *   **EN:** The system dynamically checks if granting a resource request is "safe" and will not lead to a deadlock. Uses Banker's Algorithm.
-    *   **中文:** 系统动态地检查分配一个资源请求是否“安全”，即不会导致死锁。使用银行家算法。
-*   **Deadlock Detection and Recovery / 死锁检测与恢复**
-    *   **EN:** Allow the system to enter a deadlock state, detect it, and then recover by terminating processes or preempting resources.
-    *   **中文:** 允许系统进入死锁状态，然后检测它，并通过终止进程或抢占资源来进行恢复。
-
-### **4. Deadlock vs. Starvation / 死锁 vs. 饥饿**
-
-*   **Deadlock / 死锁**
-    *   **EN:** A group of processes are all stuck in a circular wait. The state is permanent and requires external intervention.
-    *   **中文:** 一组进程陷入循环等待。这种状态是永久性的，需要外部干预才能解决。
+    *   **EN:** A process is blocked and can **never** run again because it is waiting for a resource held by another waiting process in a circular chain.
+    *   **中文:** 一个进程被阻塞，并且**永远**无法再次运行，因为它正在等待一个循环链中另一个等待进程所持有的资源。
 *   **Starvation / 饥饿**
-    *   **EN:** A process is indefinitely postponed because it is repeatedly denied access to resources (e.g., a low-priority process).
-    *   **中文:** 一个进程被无限期地延迟，因为它反复被拒绝访问资源 (例如，一个低优先级的进程)。
-   
-   ### **Deadlock Example / 死锁示例**
-   
-   *   **EN:** A situation where two or more processes are blocked forever, waiting for each other. This happens when all four necessary conditions (Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait) are met.
-   *   **中文:** 两个或多个进程因相互等待而永久阻塞的情况。当四个必要条件 (互斥、占有并等待、不可抢占、循环等待) 同时满足时会发生。
-   
-   #### **The Scenario / 场景**
-   
-   *   **Processes / 进程:**
-       *   **Process 1 (P1):** Needs to use the Scanner first, then the Printer.
-       *   **Process 2 (P2):** Needs to use the Printer first, then the Scanner.
-   *   **Resources / 资源:**
-       *   **Resource 1 (R1):** A Scanner (扫描仪)
-       *   **Resource 2 (R2):** A Printer (打印机)
-   
-   Both resources have **Mutual Exclusion** (only one process can use them at a time).
-   两种资源都是**互斥**的 (一次只能由一个进程使用)。
-   
-   #### **Sequence of Events Leading to Deadlock / 导致死锁的事件顺序**
-   
-   1.  **Step 1:** Process 1 requests and gets the Scanner (R1).
-       **第一步:** 进程1 请求并获得了扫描仪 (R1)。
-       *   *State:* P1 holds R1. (P1 占有 R1).
-   2.  **Step 2:** Process 2 requests and gets the Printer (R2).
-       **第二步:** 进程2 请求并获得了打印机 (R2)。
-       *   *State:* P1 holds R1; P2 holds R2. (P1 占有 R1; P2 占有 R2).
-   3.  **Step 3:** Process 1 tries to request the Printer (R2), but it's held by P2. So, **P1 waits**.
-       **第三步:** 进程1 试图请求打印机 (R2)，但它被 P2 占有。因此，**P1 开始等待**。
-       *   *State:* P1 holds R1 and is waiting for R2. (P1 占有 R1 并等待 R2).
-   4.  **Step 4:** Process 2 tries to request the Scanner (R1), but it's held by P1. So, **P2 waits**.
-       **第四步:** 进程2 试图请求扫描仪 (R1)，但它被 P1 占有。因此，**P2 开始等待**。
-       *   *State:* P2 holds R2 and is waiting for R1. (P2 占有 R2 并等待 R1).
-   
-   #### **Result: DEADLOCK!**
-   **结果：死锁！**
-   
-   *   **EN:** P1 is waiting for P2 to release the Printer. P2 is waiting for P1 to release the Scanner. Neither can proceed. This is a **Circular Wait**.
-   *   **中文:** P1 在等待 P2 释放打印机。P2 在等待 P1 释放扫描仪。两者都无法继续执行。这是一个**循环等待**。
-   
-   #### **Resource Allocation Graph Visualization / 资源分配图可视化**
-   This graph shows the deadlock state clearly:
-   这个图清晰地展示了死锁状态：
-   
-   ```
-          waits for / 等待
-      P1 ----------> [ R2 ]
-      ^              |
-      |              |
-    holds / 占有     holds / 占有
-      |              |
-      |              v
-    [ R1 ] <---------- P2
-          waits for / 等待
-   ```
-   
-   *   **EN:** The cycle in the graph (P1 → R2 → P2 → R1 → P1) confirms the deadlock.
-   *   **中文:** 图中的循环 (P1 → R2 → P2 → R1 → P1) 证实了死锁的存在。
+    *   **EN:** A process is overlooked or repeatedly postponed by the scheduler but is **not technically blocked**. It *could* run, but high-priority processes keep arriving and taking its place. It's a problem of indefinite postponement.
+    *   **中文:** 一个进程被调度器忽略或反复推迟，但**技术上并未被阻塞**。它*本可以*运行，但高优先级的进程不断到达并抢占了它的位置。这是一个无限期延迟的问题。
+    *   **Solution / 解决方案:** **Aging (老化)** - gradually increasing the priority of processes that wait for a long time. / **老化** - 逐渐提高等待时间长的进程的优先级。
+
+---
+
+### **Banker's Algorithm Example / 银行家算法示例**
+
+#### **Definition and Goal / 定义与目标**
+
+*   **EN:** The Banker's Algorithm is a **deadlock avoidance** algorithm. It ensures the system is always in a **"safe state"**. A safe state is one where there exists at least one sequence of execution that allows all processes to complete without deadlocking. If a resource request leads to an unsafe state, the request is denied.
+*   **中文:** 银行家算法是一种**死锁避免**算法。它通过检查每一个资源请求来确保系统始终处于**“安全状态”**。安全状态是指存在至少一个能让所有进程都顺利完成而不会发生死锁的执行序列。如果一个资源请求会导致不安全状态，该请求将被拒绝。
+
+#### **Example Data Set / 示例数据集**
+
+*   **Processes / 进程:** P0, P1, P2
+*   **Resource Types / 资源类型:** A, B, C
+*   **Total System Resources / 系统总资源:** **A=9, B=3, C=6**
+
+---
+
+### **Part 1: Is the initial system state safe? / 第一部分：初始系统状态是否安全？**
+
+#### **Step 1: Initial State and Need Calculation / 步骤1：初始状态与需求计算**
+
+*   **EN:** This is the current snapshot of the system.
+*   **中文:** 这是系统当前的快照。
+
+| Process | Allocation (A B C) | Max (A B C) |
+| :------ | :----------------- | :---------- |
+| P0      | 1 0 0              | 4 3 3       |
+| P1      | 3 1 2              | 5 2 2       |
+| P2      | 2 1 1              | 3 3 2       |
+
+*   **EN:** First, we calculate the `Available` resources and the `Need` matrix (`Need = Max - Allocation`).
+*   **中文:** 首先，我们计算 `Available` (可用资源) 和 `Need` (需求) 矩阵 (`Need = Max - Allocation`)。
+
+*   **Total Allocated (已分配总量):**
+    *   A: 1 + 3 + 2 = 6
+    *   B: 0 + 1 + 1 = 2
+    *   C: 0 + 2 + 1 = 3
+*   **Available = Total - Allocated:**
+    *   A: 9 - 6 = 3
+    *   B: 3 - 2 = 1
+    *   C: 6 - 3 = 3
+    *   **Available = [3, 1, 3]**
+
+*   **Need Matrix (需求矩阵):**
+
+| Process | Need (A B C) |
+| :------ | :----------- |
+| P0      | 3 3 3        |
+| P1      | 2 1 0        |
+| P2      | 1 2 1        |
+
+#### **Step 2: Apply the Safety Algorithm / 步骤2：应用安全算法**
+
+*   **EN:** We check for a process `Pi` where `Need[i] <= Work`. We start with `Work = Available`.
+*   **中文:** 我们寻找是否存在一个进程 `Pi` 满足 `Need[i] <= Work`。我们从 `Work = Available` 开始。
+
+**Let Work = Available = [3, 1, 3]**
+
+1.  **Check P0:** `Need(3,3,3)` is **not <=** `Work(3,1,3)`. (Needs 3 of B, only 1 available). **P0 must wait.**
+    **检查 P0:** `Need(3,3,3)` **不满足 <=** `Work(3,1,3)`。（需要3个B，但只有1个可用）。**P0必须等待。**
+2.  **Check P1:** `Need(2,1,0)` **is <=** `Work(3,1,3)`. **Success!** P1 can run.
+    **检查 P1:** `Need(2,1,0)` **满足 <=** `Work(3,1,3)`。**成功！** P1可以运行。
+    *   **EN:** We simulate P1 finishing and releasing its resources.
+    *   **中文:** 我们模拟P1完成并释放其资源。
+    *   `Work = Work + Allocation[P1] = [3,1,3] + [3,1,2] = [6,2,5]`
+    *   **Safe Sequence so far: <P1>**
+3.  **Check P2** (with new Work): `Need(1,2,1)` **is <=** `Work(6,2,5)`. **Success!** P2 can run.
+    **检查 P2** (使用新的 Work): `Need(1,2,1)` **满足 <=** `Work(6,2,5)`。**成功！** P2可以运行。
+    *   **EN:** Simulate P2 finishing.
+    *   **中文:** 模拟P2完成。
+    *   `Work = Work + Allocation[P2] = [6,2,5] + [2,1,1] = [8,3,6]`
+    *   **Safe Sequence so far: <P1, P2>**
+4.  **Check P0 again** (with new Work): `Need(3,3,3)` **is <=** `Work(8,3,6)`. **Success!** P0 can run.
+    **再次检查 P0** (使用新的 Work): `Need(3,3,3)` **满足 <=** `Work(8,3,6)`。**成功！** P0可以运行。
+    *   **Final Safe Sequence: <P1, P2, P0>**
+
+#### **Conclusion for Part 1 / 第一部分结论**
+
+*   **EN:** Yes, the system is in a **safe state**. A safe sequence is **<P1, P2, P0>**.
+*   **中文:** 是的，系统处于**安全状态**。一个安全序列是 **<P1, P2, P0>**。
+
+---
+
+### **Part 2: What if P2 requests (1,1,0)? / 第二部分：如果 P2 请求 (1,1,0) 会怎样？**
+
+#### **Step 1: Check if the request is valid / 步骤1：检查请求是否有效**
+
+1.  **EN:** Is `Request(1,1,0)` <= `Need[P2](1,2,1)`? **Yes.** (The process is not asking for more than it said it would need).
+    **中文:** `Request(1,1,0)` 是否 <= `Need[P2](1,2,1)`？**是。** (进程请求的没有超过它声明的最大需求)。
+2.  **EN:** Is `Request(1,1,0)` <= `Available(3,1,3)`? **Yes.** (The system has enough resources to fulfill the request right now).
+    **中文:** `Request(1,1,0)` 是否 <= `Available(3,1,3)`？**是。** (系统当前有足够的资源来满足该请求)。
+
+Since both checks pass, we must proceed to the safety check.
+由于两个检查都通过了，我们必须继续进行安全检查。
+
+#### **Step 2: Create the Hypothetical State / 步骤2：创建假设状态**
+
+*   **EN:** We pretend to grant the request and update the system state.
+*   **中文:** 我们假设批准该请求并更新系统状态。
+*   `Available` becomes `[3,1,3] - [1,1,0] = [2,0,3]`
+*   `Allocation[P2]` becomes `[2,1,1] + [1,1,0] = [3,2,1]`
+*   `Need[P2]` becomes `[1,2,1] - [1,1,0] = [0,1,1]`
+
+#### **Step 3: Run the Safety Algorithm on the NEW state / 步骤3：对新状态运行安全算法**
+
+**Let Work = New Available = [2, 0, 3]**
+
+1.  **Check P0:** `Need(3,3,3)` is **not <=** `Work(2,0,3)`. **P0 must wait.**
+    **检查 P0:** `Need(3,3,3)` **不满足 <=** `Work(2,0,3)`。**P0必须等待。**
+2.  **Check P1:** `Need(2,1,0)` is **not <=** `Work(2,0,3)`. (Needs 1 of B, 0 available). **P1 must wait.**
+    **检查 P1:** `Need(2,1,0)` **不满足 <=** `Work(2,0,3)`。(需要1个B，但0个可用)。**P1必须等待。**
+3.  **Check P2:** `Need(0,1,1)` is **not <=** `Work(2,0,3)`. (Needs 1 of B, 0 available). **P2 must wait.**
+    **检查 P2:** `Need(0,1,1)` **不满足 <=** `Work(2,0,3)`。(需要1个B，但0个可用)。**P2必须等待。**
+
+*   **EN:** We have gone through all processes, and **not a single one can run**. The system is stuck.
+*   **中文:** 我们已经检查了所有进程，**没有一个可以运行**。系统卡住了。
+
+#### **Conclusion for Part 2 / 第二部分结论**
+
+*   **EN:** The resulting hypothetical state is **UNSAFE**. Therefore, the Banker's Algorithm dictates that the OS **must deny the request** from P2. P2 is placed in a waiting state, and the system is not changed.
+*   **中文:** 最终的假设状态是**不安全的**。因此，银行家算法规定操作系统**必须拒绝 P2 的请求**。P2被置于等待状态，系统状态保持不变。
