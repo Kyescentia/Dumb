@@ -90,14 +90,14 @@
 ### **2. Scheduling Policies & Algorithms / 调度策略与算法 🧠**
 
 *   **Scheduling Policies / 调度策略**
-    *   **Non-Preemptive / 非抢占式**
+    *   **Non-Preemptive Priority / 非抢占式**
         *   **EN:** Once a process starts, it keeps the CPU until it finishes or voluntarily gives it up.
         *   **中文:** 一旦进程开始运行，它将一直占用CPU，直到完成或自愿放弃。
         *   🔗 [Example of NPP](https://github.com/Kyescentia/Dumb/blob/main/Y2S1/os/PPnNPP.md#1-non-preemptive-priority--%E9%9D%9E%E6%8A%A2%E5%8D%A0%E5%BC%8F%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6)
-    *   **Preemptive / 抢占式**
+    *   **Preemptive Priority / 抢占式**
         *   **EN:** The OS can interrupt a running process and force it to give up the CPU.
         *   **中文:** 操作系统可以中断一个正在运行的进程，强制其放弃CPU。
-       *   🔗 [Example of PP](https://github.com/Kyescentia/Dumb/blob/main/Y2S1/os/PPnNPP.md#2-preemptive-priority--%E6%8A%A2%E5%8D%A0%E5%BC%8F%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6)
+        *   🔗 [Example of PP](https://github.com/Kyescentia/Dumb/blob/main/Y2S1/os/PPnNPP.md#2-preemptive-priority--%E6%8A%A2%E5%8D%A0%E5%BC%8F%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6)
 
 *   **Scheduling Algorithms / 调度算法**
     *   **First-Come, First-Served (FCFS) / 先到先得**
