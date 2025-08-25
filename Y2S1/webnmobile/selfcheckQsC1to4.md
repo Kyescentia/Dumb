@@ -1,6 +1,3 @@
-Of course. This is the ultimate test. I will provide the definitive, exam-ready answers for every single one of your Self-Check Questions.
-
-Study these answers. Understand the keywords in bold. This is the complete guide to your midterms.
 
 ***
 
