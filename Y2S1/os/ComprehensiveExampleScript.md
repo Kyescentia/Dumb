@@ -1,13 +1,10 @@
-Of course. This is an excellent way to study, as it shows how all the individual concepts connect to build a more complex, useful script.
-
-Here is a final example script that combines **variables, positional parameters, `if` statements, a `for` loop, and `read`** into a single, practical utility.
 
 ---
 
 ### **Combined Script Example: A Safe Deletion Utility / 组合脚本示例：一个安全删除工具**
 
 EN: This script is a "safe delete" tool. Instead of permanently deleting files with `rm`, it moves them to a pre-defined trash directory. It checks its arguments, loops through them, and asks for confirmation before acting.
-中: 这个脚本是一个“安全删除”工具。它不会用 `rm` 永久删除文件，而是将它们移动到一个预定义的回收站目录。它会检查参数，遍历它们，并在操作前请求确认。
+<br>中: 这个脚本是一个“安全删除”工具。它不会用 `rm` 永久删除文件，而是将它们移动到一个预定义的回收站目录。它会检查参数，遍历它们，并在操作前请求确认。
 
 **Script Name / 脚本名:** `safe_delete.sh`
 
@@ -90,22 +87,22 @@ echo "Safe delete operation complete!"
 ### **How to Use and Understand It / 如何使用和理解它**
 
 1.  **Save the code** as `safe_delete.sh`.
-    中: 将代码保存为 `safe_delete.sh`。
+    <br>中: 将代码保存为 `safe_delete.sh`。
 
 2.  **Make it executable:**
-    中: **设为可执行:**
+    <br>中: **设为可执行:**
     ```bash
     chmod +x safe_delete.sh
     ```
 
 3.  **Create some test files:**
-    中: **创建一些测试文件:**
+    <br>中: **创建一些测试文件:**
     ```bash
     touch report.txt notes.md image.jpg non_existent_file
     ```
 
 4.  **Run the script with arguments:**
-    中: **带参数运行脚本:**
+    <br>中: **带参数运行脚本:**
     ```bash
     ./safe_delete.sh report.txt notes.md non_existent_file
     ```
@@ -126,8 +123,8 @@ Safe delete operation complete!
 **Verification / 验证:**
 
 *   `ls`: You will see that `report.txt` and `notes.md` are gone from the current directory.
-    中: `ls`: 你会看到 `report.txt` 和 `notes.md` 已经从当前目录消失了。
+    <br>中: `ls`: 你会看到 `report.txt` 和 `notes.md` 已经从当前目录消失了。
 *   `ls ~/.trash`: You will see `report.txt` and `notes.md` are now inside your trash directory.
-    中: `ls ~/.trash`: 你会看到 `report.txt` 和 `notes.md` 现在位于你的回收站目录中。
+    <br>中: `ls ~/.trash`: 你会看到 `report.txt` 和 `notes.md` 现在位于你的回收站目录中。
 
 This single script effectively demonstrates all the key programming concepts from Module 4 working together to create a robust and safe tool.
