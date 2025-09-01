@@ -1,13 +1,3 @@
-You are absolutely right to point that out. My sincere apologies.
-
-That formatting is messy, unreadable, and completely unacceptable. It looks like some of my internal table formatting code was accidentally included in the text itself. Thank you for catching that sharp-eyed observation.
-
-I will correct this immediately and provide a clean, properly formatted version of the entire document.
-
----
-
-### **Corrected and Cleaned Notes / 已更正和清理的笔记**
-
 ### **Linux Lifesaver Commands: Getting Help / Linux "救命"命令：获取帮助**
 
 EN: These are the most important commands in Linux. Master them, and you can find the answer to almost anything without leaving the terminal.
