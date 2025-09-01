@@ -117,3 +117,10 @@ EN: This module covers how to automate tasks by writing scripts, which are simpl
 | **`for` loop / `for` 循环** | EN: Repeats a block of code for each item in a list.<br>中: 对列表中的每个项目重复执行一段代码块。<br>_Syntax / 语法:_<br>`for VAR in item1 item2 item3; do`<br>  `echo $VAR`<br>`done` |
 | `case` statement / `case` 语句 | EN: A cleaner way to handle multiple `if/elif` conditions for a single variable.<br>中: 一种更清晰的方式来处理针对单个变量的多个 `if/elif` 条件。<br>_Syntax / 语法:_<br>`case "$VAR" in`<br>  `pattern1) commands;;`<br>  `pattern2) commands;;`<br>  `*) default_commands;;`<br>`esac` |
 | `read` | EN: Prompts the user for input and stores it in a variable.<br>中: 提示用户输入并将其存储在一个变量中。<br>_Example / 示例: `echo "Enter your name:"; read USER_NAME`_ |
+
+---
+# Scripting Examples for Module 4 / 模块四脚本示例
+- Part by Part Example / 逐部分示例
+    - 🔗 https://github.com/Kyescentia/Dumb/blob/main/Y2S1/os/ExampleScript.md
+- Combined Script ExampleUtility / 组合脚本示例
+    - 🔗 https://github.com/Kyescentia/Dumb/blob/main/Y2S1/os/ComprehensiveExampleScript.md
