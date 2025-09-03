@@ -6,32 +6,32 @@ EN: These are the most important commands in Linux. Master them, and you can fin
 #### **1. The Ultimate Lifesaver: When You Don't Know the Command Name / 终极救星：当你不知道命令名称时**
 
 *   **`apropos <keyword>`** (or `man -k <keyword>`)
-    EN: **This is your most important discovery tool.** Use it when you know *what you want to do* but don't know the command. It searches the one-line descriptions of all commands for your keyword.
-    中: **这是你最重要的发现工具。** 当你知道*你想做什么*但不知道具体命令时，就用它。它会搜索所有命令的单行描述来查找你的关键字。
+    *   EN: **This is your most important discovery tool.** Use it when you know *what you want to do* but don't know the command. It searches the one-line descriptions of all commands for your keyword.
+    *   中: **这是你最重要的发现工具。** 当你知道*你想做什么*但不知道具体命令时，就用它。它会搜索所有命令的单行描述来查找你的关键字。
     *   Example / 示例: `apropos "copy file"`
 
 #### **2. When You Know the Command Name / 当你知道命令名称时**
 
 *   **`man <command>`**
-    EN: The **man**ual. Once `apropos` helps you find a command, use `man` to learn how to use it. It provides the full, official documentation.
-    中: **man**ual (手册)。一旦 `apropos` 帮你找到了命令，就用 `man` 来学习如何使用它。它提供完整、官方的文档。
+    *   EN: The **man**ual. Once `apropos` helps you find a command, use `man` to learn how to use it. It provides the full, official documentation.
+    *   中: **man**ual (手册)。一旦 `apropos` 帮你找到了命令，就用 `man` 来学习如何使用它。它提供完整、官方的文档。
     *   **Navigation / 导航**: Use arrow keys to scroll, `/` to search, and `q` to quit. / 使用箭头键滚动，用 `/` 搜索，按 `q` 退出。
 
 *   **`<command> --help`**
-    EN: A faster alternative to `man`. It prints a quick summary of a command's most common options.
-    中: `man` 的一个更快替代方案。它打印出命令最常用选项的快速摘要。
+    *   EN: A faster alternative to `man`. It prints a quick summary of a command's most common options.
+    *   中: `man` 的一个更快替代方案。它打印出命令最常用选项的快速摘要。
 
 #### **3. Other Essential Help Commands / 其他核心帮助命令**
 
 *   `whatis <command>`
-    EN: Gives a very brief, one-line description of what a command does.
-    中: 提供一个关于命令作用的非常简短的单行描述。
+    *   EN: Gives a very brief, one-line description of what a command does.
+    *   中: 提供一个关于命令作用的非常简短的单行描述。
 *   `whereis <command>`
-    EN: Tells you where the command's program file is located on the system.
-    中: 告诉你命令的程序文件在系统中的位置。
+    *   EN: Tells you where the command's program file is located on the system.
+    *   中: 告诉你命令的程序文件在系统中的位置。
 *   `info <command>`
-    EN: Displays detailed command information, often more narrative than `man`.
-    中: 显示详细的命令信息，通常比 `man` 更具叙述性。
+    *   EN: Displays detailed command information, often more narrative than `man`.
+    *   中: 显示详细的命令信息，通常比 `man` 更具叙述性。
 
 ---
 
