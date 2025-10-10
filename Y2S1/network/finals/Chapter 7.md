@@ -1,5 +1,3 @@
----
-
 ### **Chapter 7: Simple Network Management Protocol (SNMP)**
 
 This chapter details how SNMP is used for network monitoring and management.
