@@ -1,5 +1,3 @@
----
-
 ### **Chapter 6: Network Time Protocol (NTP)**
 
 This chapter explains the importance of time synchronization on a network and how to configure NTP.
