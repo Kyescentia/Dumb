@@ -1,5 +1,3 @@
----
-
 ### **Chapter 8: Syslog**
 
 This chapter focuses on the Syslog protocol for network device logging.
