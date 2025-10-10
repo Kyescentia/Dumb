@@ -1,5 +1,3 @@
----
-
 ### **Chapter 10: Network Automation**
 
 This chapter introduces concepts and tools for automating network management.
