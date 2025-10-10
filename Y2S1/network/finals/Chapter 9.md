@@ -1,5 +1,3 @@
----
-
 ### **Chapter 9: VPN and IPsec Concepts**
 
 This chapter covers the technologies used to create secure network connections over public infrastructure.
