@@ -1,5 +1,3 @@
----
-
 ### **Chapter 3: DHCPv4**
 
 This chapter covers the operation and configuration of DHCP for IPv4.
