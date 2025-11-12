@@ -1,4 +1,4 @@
-# Tutorial 1(a) - Complete Lecture Notes
+# Tutorial 1(a) - Complete notes
 
 ## 📝 Tutorial 1 (a): Question 2
 
